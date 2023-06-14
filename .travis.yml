@@ -14,3 +14,11 @@ after_success:
   - docker build -t xalster/multi-nginx ./nginx
   - docker build -t xalster/multi-server ./server
   - docker build -t xalster/multi-worker ./worker
+
+  # Login to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Push images to hub
+  - docker push xalster/multi-client
+  - docker push xalster/multi-nginx
+  - docker push xalster/multi-server
+  - docker push xalster/multi-worker
